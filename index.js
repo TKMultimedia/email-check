@@ -18,7 +18,7 @@ function validateEmail (email) {
 // Full email check
 module.exports = function (email, opts) {
   return new Promise(function (resolve, reject) {
-    email = validateEmail(email);
+    email = opts.skipValidation === true ? email : validateEmail(email);
     email ? resolve(email.split('@')[1]) : reject();
   })
     .then(function (domain) {
